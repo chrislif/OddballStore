@@ -31,13 +31,15 @@ namespace OddballStore
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -65,6 +67,44 @@ namespace OddballStore
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            CreateRoles(serviceProvider).Wait();
+        }
+
+        private async Task CreateRoles(IServiceProvider service)
+        {
+            var RoleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = service.GetRequiredService<UserManager<IdentityUser>>();
+
+            // Create Roles
+            string[] roleNames = { "Admin", "User" };
+            IdentityResult roleResult;
+
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+
+            // Create Users and Assign Roles
+            var poweruser = new IdentityUser();
+            poweruser.UserName = "Admin@Admin.com";
+            poweruser.Email = "Admin@Admin.com";
+            poweruser.EmailConfirmed = true;
+            string userPWD = "Admin#123";
+            var createPowerUser = await UserManager.CreateAsync(poweruser, userPWD);
+            await UserManager.AddToRoleAsync(poweruser, "Admin");
+
+            var reguser = new IdentityUser();
+            reguser.UserName = "user@user.com";
+            reguser.Email = "user@user.com";
+            reguser.EmailConfirmed = true;
+            string regPWD = "Password#123";
+            var createRegUser = await UserManager.CreateAsync(reguser, regPWD);
+            await UserManager.AddToRoleAsync(reguser, "User");
         }
     }
 }
