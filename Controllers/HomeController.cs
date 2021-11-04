@@ -23,11 +23,15 @@ namespace OddballStore.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Profile()
         {
             return View();
         }
 
+        public IActionResult Items()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
