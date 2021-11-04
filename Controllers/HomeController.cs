@@ -23,7 +23,7 @@ namespace OddballStore.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Profile()
         {
             return View();
         }
@@ -32,12 +32,6 @@ namespace OddballStore.Controllers
         {
             return View();
         }
-
-        public IActionResult Cart()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
