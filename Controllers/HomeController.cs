@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OddballStore.Models;
 using System;
@@ -18,21 +19,25 @@ namespace OddballStore.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Profile()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Cart()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Items()
         {
             return View();
