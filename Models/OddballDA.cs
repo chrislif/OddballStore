@@ -7,6 +7,6 @@ namespace OddballStore.Models
 {
     public class OddballDA
     {
-         public static 
+         
     }
 }

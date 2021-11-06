@@ -9,6 +9,7 @@ namespace OddballStore.Models
 {
     public class OddballStoreDB
     {
+        /*
         public static SqlConnection GetConnection()
         {
 
@@ -18,5 +19,6 @@ namespace OddballStore.Models
 
             return connection;
         }
+        */
     }
 }
