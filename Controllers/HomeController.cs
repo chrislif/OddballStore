@@ -35,10 +35,19 @@ namespace OddballStore.Controllers
             return View();
         }
 
-        [Authorize]
-        public IActionResult Cart()
+        //update profile
+        public IActionResult UpdateProfile()
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                //TODO: Update DB record
+                return View("Profile");
+            }
+            else
+            {
+                return View("Index");
+
+            }
         }
 
         [AllowAnonymous]
