@@ -1,5 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model OddballStore.Models.User
 @{
+    ViewData["Title"] = "Profile";
 }
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+
+</div>
+
+<h3>Welcome @Model.UserID</h3>
+
+<h3>Update Info</h3>
+
+<form asp-action="UpdateProfile" method="post">
+    <p>
+
+        <label aps-for="Email">Email: </label>
+        <input asp-for="Email" />
+    </p>
+    
+    <p>
+        <label aps-for="UserID">User ID: </label>
+        <input asp-for="UserID" />
+    </p>
+
+
+</form>
+
+@*TODO:
+    display and edit user info
+    ability to add info ie phone num*@
+
+
+

@@ -28,6 +28,21 @@ namespace OddballStore.Controllers
             return View();
         }
 
+        //update profile
+        public IActionResult UpdateProfile()
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO: Update DB record
+                return View("Profile");
+            }
+            else
+            {
+                return View("Index");
+
+            }
+        }
+
         public IActionResult Items()
         {
             return View();
