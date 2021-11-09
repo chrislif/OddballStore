@@ -1,6 +1,5 @@
-﻿@*
+﻿@model IEnumerable<OddballStore.Models.Item>
 
-*@
 @{
     ViewData["Title"] = "Items";
 }
@@ -8,6 +7,20 @@
 <div class="text-center">
     <h1 class="display-4">Items</h1>
 </div>
+
 <div>
-    <p>This is the items page.</p>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
+    }
 </div>
