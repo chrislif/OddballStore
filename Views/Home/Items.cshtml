@@ -8,19 +8,58 @@
     <h1 class="display-4">Items</h1>
 </div>
 
-<div>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-        </tr>
-    }
+@*<div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Price(Gold)</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <form method="post">
+                            <input type="hidden" id="action" value="add" />
+                            <input type="submit" value="Add to Cart" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>*@
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        { 
+        <div class="col text-center shadow-sm p-4 mb-4">
+            <img src="~/images/corruptingPot.png" />
+            Name:<br />
+            @Html.DisplayFor(modelItem => item.Name)<br /><br />
+            Description:<br />
+            @Html.DisplayFor(modelItem => item.Description)<br /><br />
+            Price:<br />
+            @Html.DisplayFor(modelItem => item.Price)<br /><br />
+            <form method="post">
+                <input type="hidden" id="action" value="add" />
+                <input type="submit" value="Add to Cart" />
+            </form>
+        </div>
+        }
+    </div>
 </div>
