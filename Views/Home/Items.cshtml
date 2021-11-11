@@ -47,22 +47,18 @@
     <div class="row">
         @foreach (var item in Model)
         { 
-        <div class="col d-flex justify-content-center text-center shadow-sm p-4 mb-4">
-            <div class="align-self-start mx-auto">
-                <img src="~/images/@Html.DisplayFor(modelItem => item.Thumbnail)" class="img-thumbnail" height="75px" width="75px" /><br />
-                Name:<br />
-                @Html.DisplayFor(modelItem => item.Name)<br /><br />
-                Description:<br />
-                @Html.DisplayFor(modelItem => item.Description)<br /><br />
-                Price:<br />
-                @Html.DisplayFor(modelItem => item.Price)<br /><br />
-            </div>
-            <div class="align-self-end mx-auto">
-                <form method="post">
-                    <input type="hidden" id="action" value="add" />
-                    <input type="submit" value="Add to Cart" class="btn-block" />
-                </form>
-            </div>
+        <div class="col-lg-3 text-center shadow-sm p-4 mb-4">
+            <img src="~/images/@Html.DisplayFor(modelItem => item.Thumbnail)" class="img-thumbnail mx-auto" height="75px" width="75px"/><br/>
+            Name:<br />
+            @Html.DisplayFor(modelItem => item.Name)<br /><br />
+            Description:<br />
+            @Html.DisplayFor(modelItem => item.Description)<br /><br />
+            Price:<br />
+            @Html.DisplayFor(modelItem => item.Price)<br /><br />
+            <form method="post">
+                <input type="hidden" id="action" value="add" />
+                <input type="submit" value="Add to Cart" class="btn-block"/>
+            </form>
         </div>
         }
     </div>
