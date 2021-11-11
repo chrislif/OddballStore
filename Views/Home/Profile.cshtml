@@ -5,23 +5,34 @@
 
 @{
     ViewData["Title"] = "Profile";
-
 }
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <p>
-        @User.Identity.Name
+   
+    IdentityUser currentUser = await UserManager.GetUserAsync(User);
+   
+    <p></p>
+    <p>@currentUser.PasswordHash</p>
 
-        @{ 
-            var userIdentity = User.Identity;
+    <form asp-controller="HomeController">
+        <p>
+            <label asp-for="Email">Email: </label>
+            <input type="text" value="@currentUser.Email" />
+        </p>
+        <p>
+            <label asp-for="UserName">Username: </label>
+            <input type="text" value="@currentUser.UserName" />
+        </p>
+        <p>
+            <label asp-for="PhoneNumber">Phone: </label>
+            <input type="text" value="@currentUser.PhoneNumber" />
+        </p>
 
-            //RoleManager
-            
-        }
-    </p>
+
+    </form>
 }
 else
 {
-    
+
 }
