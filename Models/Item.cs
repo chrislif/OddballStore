@@ -17,7 +17,10 @@ namespace OddballStore.Models
 
         public Item(string name, string description, int price, string thumbnail)
         {
-            
+            Name = name;
+            Description = description;
+            Price = price;
+            Thumbnail = thumbnail;
         }
 
 
