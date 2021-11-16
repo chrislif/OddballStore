@@ -1,4 +1,9 @@
-﻿@{
+﻿@model OddballStore.Models.User
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -10,6 +15,19 @@
     <br />
     <p>Shop from a wide variety of items.</p>
     <br />
-    <br />
-    <button><a asp-controller="Item" asp-action="Index">Admin Management Tools</a></button>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        IdentityUser currentUser = await UserManager.GetUserAsync(User);
+        var userRoles = await UserManager.GetRolesAsync(currentUser);
+        if (userRoles.Contains("Admin"))
+        {
+            <button><a asp-controller="Item" asp-action="Index">Admin Management Tools</a></button>
+        }
+    }
+    else
+    {
+
+        <p>Remember to login!</p>
+    }
+
 </div>
