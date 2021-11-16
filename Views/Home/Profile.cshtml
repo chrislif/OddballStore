@@ -9,7 +9,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-   
+
     IdentityUser currentUser = await UserManager.GetUserAsync(User);
 
     <form asp-controller="HomeController">
@@ -32,9 +32,16 @@
 
     </form>
 
-    <form asp-area="" asp-controller="Item" asp-action="Index" method="post">
-        <input type="submit" value="Edit Store Items" />
-    </form>
+    var userRoles = await UserManager.GetRolesAsync(currentUser);
+
+    if (userRoles.Contains("Admin"))
+    {
+        <form asp-area="" asp-controller="Item" asp-action="Index" method="post">
+            <input type="submit" value="Edit Store Items" />
+        </form>
+    }
+
+
 }
 else
 {
