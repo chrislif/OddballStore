@@ -11,9 +11,8 @@
 {
    
     IdentityUser currentUser = await UserManager.GetUserAsync(User);
-   
-    <p></p>
-    <p>@currentUser.PasswordHash</p>
+
+
 
     <form asp-controller="HomeController">
         <p>
@@ -29,10 +28,14 @@
             <input type="text" value="@currentUser.PhoneNumber" />
         </p>
 
+        <p>
+            <input type="submit" value="Submit" />
+        </p>
 
     </form>
 }
 else
 {
 
+    <p>Begone</p>
 }

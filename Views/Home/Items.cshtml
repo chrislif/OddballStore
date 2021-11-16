@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<OddballStore.Models.Item>
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 
 @{
     ViewData["Title"] = "Items";
@@ -10,25 +14,25 @@
 <div class="container-fluid">
     <div class="row">
         @foreach (var item in Model)
-        { 
-        <div class="col-lg-3 d-flex flex-column text-center shadow-sm p-4 mb-4" height="700px">
-            <img src="~/images/@Html.DisplayFor(modelItem => item.Thumbnail)" class="img-thumbnail mx-auto" height="75px" width="75px"/><br/>
-            Name:<br />
-            @Html.DisplayFor(modelItem => item.Name)<br /><br />
-            Description:<br />
-            @Html.DisplayFor(modelItem => item.Description)<br /><br />
-            Price:<br />
-            @Html.DisplayFor(modelItem => item.Price)<br /><br />
-            <div class="mx-auto align-self-end">
-                <form method="post">
-                    <input type="hidden" id="action" value="add" />
-                    <input type="submit" value="Add to Cart" class="btn-block"/>
-                </form>
+        {
+            <div class="col-lg-3 d-flex flex-column text-center shadow-sm p-4 mb-4" height="700px">
+                <img src="~/images/@Html.DisplayFor(modelItem => item.Thumbnail)" class="img-thumbnail mx-auto" height="75px" width="75px" /><br />
+                Name:<br />
+                @Html.DisplayFor(modelItem => item.Name)<br /><br />
+                Description:<br />
+                @Html.DisplayFor(modelItem => item.Description)<br /><br />
+                Price:<br />
+                @Html.DisplayFor(modelItem => item.Price)<br /><br />
+                <div class="mx-auto align-self-end">
+                    <form method="post">
+                        <input type="hidden" id="action" value="add" />
+                        <input type="submit" value="Add to Cart" class="btn-block" />
+                    </form>
+                </div>
             </div>
-        </div>
         }
     </div>
 </div>
 <form asp-area="" asp-controller="Home" asp-action="**editing page" method="post">
-    <input type="button" value="Edit" />
+
 </form>
