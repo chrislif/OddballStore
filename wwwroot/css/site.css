@@ -59,7 +59,14 @@ nav {
 
 body {
     margin-bottom: 60px;
-    background-color: cornsilk;
+    background-color: black;
+    background-image: url('../images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1, span {
+    color: white;
 }
 
 .footer {
