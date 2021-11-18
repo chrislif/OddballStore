@@ -65,8 +65,21 @@ body {
     background-size: cover;
 }
 
-h1, span {
+h1 {
     color: white;
+}
+
+.divBackground {
+    background-color: white;
+    border-radius: 25px;
+    border: 1px solid black;
+
+    transition: 0.5s;
+    transform: scale(1);
+}
+.divBackground:hover {
+    transition: 0.5s;
+    transform: scale(1.1);
 }
 
 .footer {
