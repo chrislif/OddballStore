@@ -12,25 +12,33 @@
 
     IdentityUser currentUser = await UserManager.GetUserAsync(User);
 
-    <form asp-controller="HomeController">
-        <p>
-            <label asp-for="Email">Email: </label>
-            <input type="text" value="@currentUser.Email" />
-        </p>
-        <p>
-            <label asp-for="UserName">Username: </label>
-            <input type="text" value="@currentUser.UserName" />
-        </p>
-        <p>
-            <label asp-for="PhoneNumber">Phone: </label>
-            <input type="text" value="@currentUser.PhoneNumber" />
-        </p>
+    <h1>Profile</h1>
 
-        <p>
-            <input type="submit" value="Submit" />
-        </p>
+    <h3>Edit User Information</h3>
 
-    </form>
+    <div class="jumbotron-fluid">
+        <form asp-controller="HomeController">
+            <div class="form-group">
+
+                <label asp-for="Email">Email: </label>
+                <input type="text" value="@currentUser.Email" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName">Username: </label>
+                <input type="text" value="@currentUser.UserName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber">Phone: </label>
+                <input type="text" value="@currentUser.PhoneNumber" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit" />
+            </div>
+
+        </form>
+    </div>
 
     var userRoles = await UserManager.GetRolesAsync(currentUser);
 
