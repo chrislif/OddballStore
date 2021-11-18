@@ -12,29 +12,28 @@
 
     IdentityUser currentUser = await UserManager.GetUserAsync(User);
 
-    <h1>Profile</h1>
+    <h1 class="display-1">Profile</h1>
 
-    <h3>Edit User Information</h3>
-
-    <div class="jumbotron-fluid">
+    <div class="jumbotron">
+        <h3 class="display-4">Edit User Information</h3>
         <form asp-controller="HomeController">
             <div class="form-group">
-
                 <label asp-for="Email">Email: </label>
                 <input type="text" value="@currentUser.Email" class="form-control" />
-
             </div>
+
             <div class="form-group">
                 <label asp-for="UserName">Username: </label>
                 <input type="text" value="@currentUser.UserName" class="form-control" />
             </div>
+
             <div class="form-group">
                 <label asp-for="PhoneNumber">Phone: </label>
                 <input type="text" value="@currentUser.PhoneNumber" class="form-control" />
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" class="btn btn-outline-dark" />
             </div>
 
         </form>
