@@ -13,21 +13,6 @@
 <div>
     <br />
     <br />
-    <p>Shop from a wide variety of items.</p>
-    <br />
-    @if (SignInManager.IsSignedIn(User))
-    {
-        IdentityUser currentUser = await UserManager.GetUserAsync(User);
-        var userRoles = await UserManager.GetRolesAsync(currentUser);
-        if (userRoles.Contains("Admin"))
-        {
-            <button><a asp-controller="Item" asp-action="Index">Admin Management Tools</a></button>
-        }
-    }
-    else
-    {
-
-        <p>Remember to login!</p>
-    }
+    <p>Default page nothing here. Look Away!!</p>
 
 </div>
