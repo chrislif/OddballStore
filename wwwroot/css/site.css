@@ -80,6 +80,17 @@ h1 {
 .divBackground:hover {
     transition: 0.5s;
     transform: scale(1.1);
+    filter: grayscale(100%);
+}
+
+input {
+    transition: 1s;
+}
+
+input:hover {
+    transition: 1s;
+    background-color: black;
+    color: white
 }
 
 .footer {
