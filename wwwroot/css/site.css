@@ -70,3 +70,40 @@ body {
     line-height: 60px;
     background-color: white;
 }
+
+.eyeContainer {
+    display: block;
+}
+
+.eyes {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    bottom: 41px;
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.eyeInner {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    border-radius: 50%;
+    margin-left: 4px;
+}
+
+.eyeInner:after {
+    position: absolute;
+    top: 2px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    content: ' ';
+}
+
