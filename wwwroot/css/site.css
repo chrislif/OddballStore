@@ -102,6 +102,11 @@ input:hover {
     background-color: white;
 }
 
+.nameArrange {
+    float: left;
+    color: black;
+}
+
 .eyeContainer {
     display: block;
 }
