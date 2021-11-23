@@ -69,6 +69,13 @@ h1 {
     color: white;
 }
 
+.divBackground2 {
+    background-color: white;
+    border-radius: 25px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
 .divBackground {
     background-color: white;
     border-radius: 25px;
