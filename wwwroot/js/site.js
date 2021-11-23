@@ -1,7 +1,7 @@
 ﻿$(document).ready(() => {
 	const container = document.querySelector('.container');
 
-	container.addEventListener('mouseover', (e) => {
+	document.addEventListener('mouseover', (e) => {
 		const eye = document.querySelectorAll('.eyes');
 		[].forEach.call(eye, function (eye) {
 			let mouseX = eye.getBoundingClientRect().right;
@@ -12,6 +12,21 @@
 			let radianDegrees = Math.atan2(e.pageX - mouseX, e.pageY - mouseY);
 			let rotationDegrees = radianDegrees * (180 / Math.PI) * -1 + 180;
 			eye.style.transform = `rotate(${rotationDegrees}deg)`;
+		});
+	});
+
+	//ALT EYE SOLUTION
+	$(document).mousemove(function (event) {
+		var eye = $(".eyes");
+		var x = (eye.offset().left) + (eye.width() / 2);
+		var y = (eye.offset().top) + (eye.height() / 2);
+		var rad = Math.atan2(event.pageX - x, event.pageY - y);
+		var rot = (rad * (180 / Math.PI) * -1) + 180;
+		eye.css({
+			'-webkit-transform': 'rotate(' + rot + 'deg)',
+			'-moz-transform': 'rotate(' + rot + 'deg)',
+			'-ms-transform': 'rotate(' + rot + 'deg)',
+			'transform': 'rotate(' + rot + 'deg)'
 		});
 	});
 });
