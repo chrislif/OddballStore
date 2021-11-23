@@ -41,12 +41,6 @@ namespace OddballStore.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        public IActionResult Checkout()
-        {
-            return View();
-        }
-
         //update profile
         public IActionResult UpdateProfile()
         {
