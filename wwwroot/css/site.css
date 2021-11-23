@@ -85,12 +85,14 @@ h1 {
 
 input {
     transition: 1s;
+    background-color: white;
+    color: black;
 }
 
 input:hover {
     transition: 1s;
     background-color: black;
-    color: white
+    color: white;
 }
 
 .footer {
