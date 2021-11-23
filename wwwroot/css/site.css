@@ -138,3 +138,34 @@ input:hover {
     content: ' ';
 }
 
+
+/*ALT EYE FIX*/
+.move-area { /*normally use body*/
+    position: relative;
+    background: none;
+
+}
+
+.container {
+    width: 100%;
+}
+
+.eye {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    background: #CCC;
+}
+
+    .eye:after { /*pupil*/
+        position: absolute;
+        bottom: 17px;
+        right: 10px;
+        width: 10px;
+        height: 10px;
+        background: #000;
+        border-radius: 50%;
+        content: " ";
+    }
