@@ -12,6 +12,7 @@ namespace OddballStore.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
 
         public DbSet<Item> Items { get; set; }
