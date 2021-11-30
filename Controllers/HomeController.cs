@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -16,11 +17,13 @@ namespace OddballStore.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
+        private UserManager<User> userManager;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<User> usrMgr)
         {
             _logger = logger;
             _context = context;
+            userManager = usrMgr;
         }
 
         [AllowAnonymous]
@@ -54,6 +57,14 @@ namespace OddballStore.Controllers
                 return View("Index");
 
             }
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult AllUsers()
+        {
+            // _context.Users.ToList();
+
+            return View(userManager.Users.ToList());
         }
 
         [AllowAnonymous]

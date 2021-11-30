@@ -69,9 +69,13 @@ h1 {
     color: white;
 }
 
-.alignLeft {
+.alignRight {
     margin-left: auto;
     width: 100px;
+}
+
+.padding {
+    padding: 10px;
 }
 
 .divBackground2 {

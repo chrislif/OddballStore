@@ -43,11 +43,19 @@
 
     if (userRoles.Contains("Admin"))
     {
-        <form asp-area="" asp-controller="Item" asp-action="Index" method="post">
-            <div class="form-group">
-                <input type="submit" value="Edit Store Items" class="btn btn-light"/>
-            </div>
-        </form>
+        <div class="jumbotron">
+            <h3 class="display-4">Admin</h3>
+            <form asp-area="" asp-controller="Item" asp-action="Index" method="post">
+                <div class="form-group">
+                    <input type="submit" value="Edit Store Items"  class="btn btn-outline-dark" />
+                    
+                </div>
+            </form>
+
+            <form asp-area="" asp-controller="Home" asp-action="AllUsers" method="post">
+                <input type="submit" value="Edit User List" class="btn btn-outline-dark" />
+            </form>
+        </div>
     }
 
 
