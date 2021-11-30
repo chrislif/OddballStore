@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<OddballStore.Models.Item>
 @using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Http
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
@@ -24,7 +25,7 @@
                 Price:<br />
                 @Html.DisplayFor(modelItem => item.Price)<br /><br />
                 <div class="mx-auto align-self-end">
-                    <form method="post">
+                    <form method="post" asp-area="" asp-controller="Home" asp-action="Cart">
                         <input type="hidden" id="action" value="add" />
                         <input type="submit" value="Add to Cart" class="btn-block" />
                     </form>
