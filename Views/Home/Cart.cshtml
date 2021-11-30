@@ -7,4 +7,29 @@
 </div>
 <div class="divBackground2 height="700px">
     <p>This is the cart page.</p>
+
+    @*TEMPLATE*@
+    @*@foreach (var item in Model)
+    {
+        <div class="divBackground col-lg-3 d-flex flex-column text-center shadow-sm p-4 mb-4" height="700px">
+            <img src="~/images/@Html.DisplayFor(modelItem => item.Thumbnail)" class="img-thumbnail mx-auto" height="75px" width="75px" /><br />
+            Name:<br />
+            @Html.DisplayFor(modelItem => item.Name)<br /><br />
+            Description:<br />
+            @Html.DisplayFor(modelItem => item.Description)<br /><br />
+            Price:<br />
+            @Html.DisplayFor(modelItem => item.Price)<br /><br />
+            <div class="mx-auto align-self-end">
+                <form method="post">
+                    <input type="hidden" id="action" value="delete" />
+                    <input type="submit" value="Delete" class="btn-block" />
+                </form>
+            </div>
+        </div>
+    }*@
+
+    <form method="post" class="alignLeft">
+        <input type="hidden" id="action" value="checkout" />
+        <input type="submit" value="Checkout" class="btn-block" />
+    </form>
 </div>
