@@ -1,9 +1,4 @@
-﻿@model IEnumerable<User>
-@using Microsoft.AspNetCore.Identity;
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
-
+﻿@model IEnumerable<OddballStore.Models.User>
 
 @{
     ViewData["Title"] = "All Users";
@@ -21,13 +16,8 @@
             </tr>
         </thead>
         <tbody>
-                
-                @foreach (var i in allUsersList)
-                {
-                    <p>foobar</p>
-                }
-            
 
         </tbody>
+    </table>
 </div>
-</table>
+

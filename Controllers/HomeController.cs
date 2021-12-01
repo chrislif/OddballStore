@@ -17,13 +17,11 @@ namespace OddballStore.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
-        private UserManager<User> userManager;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<User> usrMgr)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;
-            userManager = usrMgr;
         }
 
         [AllowAnonymous]
@@ -64,7 +62,7 @@ namespace OddballStore.Controllers
         {
             // _context.Users.ToList();
 
-            return View(userManager.Users.ToList());
+            return View();
         }
 
         [AllowAnonymous]
