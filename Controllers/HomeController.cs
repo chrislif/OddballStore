@@ -60,9 +60,7 @@ namespace OddballStore.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult AllUsers()
         {
-            // _context.Users.ToList();
-
-            return View();
+            return View(_context.Users.ToList());
         }
 
         [AllowAnonymous]
