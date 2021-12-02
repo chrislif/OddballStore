@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,8 @@ namespace OddballStore.Controllers
             return View();
         }
 
+
+
         //update profile
         public IActionResult UpdateProfile()
         {
@@ -68,6 +71,16 @@ namespace OddballStore.Controllers
         {
             return View(await _context.Items.ToListAsync());
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Items(int? ItemID, [Bind("ItemID,Name,Description,Price,Thumbnail")] Item item)
+        {
+            Session["id"] = ItemID;
+            
+
+            return View(await _context.Items.ToListAsync());
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
