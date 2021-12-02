@@ -17,15 +17,11 @@ namespace OddballStore.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<User> usrMgr, RoleManager<IdentityRole> roleManager)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;
-            _userManager = usrMgr;
-            _roleManager = roleManager;
         }
 
         [AllowAnonymous]
@@ -64,9 +60,7 @@ namespace OddballStore.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult AllUsers()
         {
-            var allUsers = _userManager.Users.ToList();
-
-            return View(allUsers);
+            return View(_context.Users.ToList());
         }
 
         [AllowAnonymous]

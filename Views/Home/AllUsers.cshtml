@@ -1,9 +1,4 @@
-﻿@model IEnumerable<User>
-@using Microsoft.AspNetCore.Identity;
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
-
+﻿@model List<Microsoft.AspNetCore.Identity.IdentityUser>
 
 @{
     ViewData["Title"] = "All Users";
@@ -21,13 +16,21 @@
             </tr>
         </thead>
         <tbody>
-                
-                @foreach (var item in Model)
-                {
-                    <p>@item.Email</p>
-                }
-            
-
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                </tr>
+            }
         </tbody>
+    </table>
 </div>
-</table>
+
