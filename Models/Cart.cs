@@ -12,14 +12,14 @@ namespace OddballStore.Models
 
         public Cart() { }
 
-        public Cart(int quantity, string name, string description, int price, string thumbnail)
-        {
-            Quantity = quantity;
-            Name = name;
-            Description = description;
-            Price = price;
-            Thumbnail = thumbnail;
-        }
+        //public Cart(int quantity, string name, string description, int price, string thumbnail)
+        //{
+        //    Quantity = quantity;
+        //    Name = name;
+        //    Description = description;
+        //    Price = price;
+        //    Thumbnail = thumbnail;
+        //}
 
 
     }
