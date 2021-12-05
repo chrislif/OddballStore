@@ -1,6 +1,18 @@
 ﻿@model List<CartItem>;
 @{
     ViewData["Title"] = "Cart";
+
+    int subtotal = 0;
+    double taxAmount = 0;
+    double total = 0;
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        subtotal += Model[i].Item.Price * Model[i].Quantity;
+    }
+
+    taxAmount = subtotal * 0.1;
+    total = subtotal + taxAmount;
 }
 
 <div class="text-center">
@@ -19,14 +31,14 @@
                 Price:<br />
                 @Html.DisplayFor(modelItem => cartItem.Item.Price)<br /><br />
                 <div class="mx-auto align-self-end">
-                    <form method="post">
-                        <input type="hidden" id="action" value="Quantity" />
-                        <input class="text-center" type="number" name="quantityNum" value="@Html.DisplayFor(modelItem => cartItem.Quantity)" />
+                    <form method="POST" asp-action="Quantity">
+                        <input type="number" id="quantityNum" name="quantityNum" value="@Html.DisplayFor(modelItem => cartItem.Quantity)" class="text-center" />
+                        <input type="hidden" id="itemId" name="itemId" value="@cartItem.Item.ItemID">
                         <input type="submit" value="Update" class="btn-block" />
                     </form>
                     <br />
-                    <form method="post">
-                        <input type="hidden" id="action" value="Delete" />
+                    <form method="POST" asp-action="Delete">
+                        <input type="hidden" id="itemId" name="itemId" value="@cartItem.Item.ItemID">
                         <input type="submit" value="Delete" class="btn-block" />
                     </form>
                 </div>
@@ -38,11 +50,10 @@
 <br />
 
 <div class="divBackground padding" height="700px">
-    Subtotal: @*@Html.DisplayFor(modelItem => cart.QuantCost)*@<br />
-    Tax: N/A<br />
-    Total: N/A<br /><br />
-    <form method="Post" class="alignRight">
-        <input type="hidden" action="Checkout" />
+    Subtotal: @subtotal gp<br />
+    Tax: @taxAmount gp<br />
+    Total: @total gp<br /><br />
+    <form method="Post" class="alignRight" asp-action="Checkout">
         <input type="submit" value="Checkout" class="btn-block" />
     </form>
 </div>

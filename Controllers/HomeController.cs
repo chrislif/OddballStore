@@ -129,7 +129,57 @@ namespace OddballStore.Controllers
             var json = JsonSerializer.Serialize(cartList);
             HttpContext.Session.SetString("cart", json);
 
-            return View("Home/Items");
+            return View("Cart", cartList);
+        }
+
+        [HttpPost]
+        public IActionResult Quantity(int quantityNum, int itemID)
+        {
+            var json = HttpContext.Session.GetString("cart");
+            List<CartItem> cartList = new List<CartItem>();
+
+            if (json != null)
+            {
+                cartList = JsonSerializer.Deserialize<List<CartItem>>(json);
+
+                for (int i = 0; i < cartList.Count; i++)
+                {
+                    if (cartList[i].Item.ItemID == itemID)
+                    {
+                        cartList[i].Quantity = quantityNum;
+                    }
+                }
+
+                json = JsonSerializer.Serialize(cartList);
+                HttpContext.Session.SetString("cart", json);
+            }
+
+            return View("Cart", cartList);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int itemID)
+        {
+            var json = HttpContext.Session.GetString("cart");
+            List<CartItem> cartList = new List<CartItem>();
+
+            if (json != null)
+            {
+                cartList = JsonSerializer.Deserialize<List<CartItem>>(json);
+
+                for (int i = 0; i < cartList.Count; i++)
+                {
+                    if (cartList[i].Item.ItemID == itemID)
+                    {
+                        cartList.RemoveAt(i);
+                    }
+                }
+
+                json = JsonSerializer.Serialize(cartList);
+                HttpContext.Session.SetString("cart", json);
+            }
+
+            return View("Cart", cartList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
