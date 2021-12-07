@@ -117,6 +117,18 @@ namespace OddballStore.Controllers
             return View("AllUsers", _context.Users.ToList());
         }
 
+        [HttpGet]
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUser([Bind("Email, Password, PhoneNumber")] User user)
+        {
+
+            return View();
+        }
 
         private bool UserExists(string id) => _context.Users.Any(e => e.Id == id);
     }
