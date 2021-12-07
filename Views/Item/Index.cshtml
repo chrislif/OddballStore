@@ -6,9 +6,7 @@
 
 <h1>Store Items</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <div class="table">
     <table class="table jumbotron">
         <thead>
@@ -51,5 +49,9 @@
                 </tr>
             }
         </tbody>
+    </table>
+    <form asp-action="Create">
+        <input type="submit" value="Create New" class="btn btn-secondary"/>
+    </form>
+
 </div>
-</table>
