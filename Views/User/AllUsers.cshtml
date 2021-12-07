@@ -10,8 +10,8 @@
     <table class="table jumbotron">
         <thead>
             <tr>
-                <th>Username</th>
                 <th>Email</th>
+                <th>Phone Number</th>
             </tr>
         </thead>
         <tbody>
@@ -19,24 +19,24 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => user.UserName)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => user.Email)
                     </td>
                     <td>
-                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
-                        {
-                            @Html.HiddenFor(m => m.Name)
-                            @Html.Hidden("Country", (object)ViewBag.Country)
-                            <input type="submit" value="Submit" />
-                        }
-                        <form asp-Controller="User" method="get">
-                            <input type="hidden" />
+                        @Html.DisplayFor(modelItem => user.PhoneNumber)
+                    </td>
+                    <td>
+                        <div class="form-inline">
+                            <form asp-controller="User" asp-action="EditUser" method="get">
+                                <input type="hidden" name="Id" value="@user.Id" />
+                                <input class="btn btn-secondary" type="submit" value="Edit" />
+                            </form>
 
+                            <form asp-Controller="User" asp-action="DeleteUser" method="post">
+                                <input type="hidden" name="Id" value="@user.Id"/>
+                                <input class="btn btn-secondary" type="submit" value="Delete"/>
+                            </form>
+                        </div>
 
-                            <input class="btn-secondary" type="submit" value="Delete" asp-action="DeleteUser" />
-                        </form>
 
                     </td>
                 </tr>
@@ -44,5 +44,8 @@
         </tbody>
 
     </table>
+    <form asp-controller="User" asp-action="CreateUser" method="get">
+        <input class="btn btn-primary" type="submit" value="Create User"/>
+    </form>
 </div>
 

@@ -34,52 +34,89 @@ namespace OddballStore.Controllers
         {
             if (id == null)
             {
-                return View();
+                return View("AllUsers", _context.Users.ToList());
             }
 
             var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
-                return View();
+                //go to different view
+                return View("AllUsers", _context.Users.ToList());
             }
             return View(user);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUser(string id, [Bind("Id, Email, UserName")] User user)
+        public async Task<IActionResult> EditUser(string email, [Bind("Id, Email, PhoneNumber")] User user)
         {
-            if (id != user.Id)
-            {
-                return NotFound();
-            }
+            var saved = false;
 
-            if (ModelState.IsValid)
+            user.UserName = email;
+
+            while (!saved)
             {
                 try
                 {
+                    // Attempt to save changes to the database
                     _context.Update(user);
                     await _context.SaveChangesAsync();
+                    saved = true;
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
-                    if (!UserExists(user.Id))
+                    foreach (var entry in ex.Entries)
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+                        if (entry.Entity is User)
+                        {
+                            var proposedValues = entry.CurrentValues;
+                            var databaseValues = entry.GetDatabaseValues();
+
+                            foreach (var property in proposedValues.Properties)
+                            {
+                                var proposedValue = proposedValues[property];
+                                var databaseValue = databaseValues[property];
+
+                                // TODO: decide which value should be written to database
+                                proposedValues[property] = proposedValue;
+                            }
+
+                            // Refresh original values to bypass next concurrency check
+                            entry.OriginalValues.SetValues(databaseValues);
+                        }
+                        else
+                        {
+                            throw new NotSupportedException(
+                                "Don't know how to handle concurrency conflicts for "
+                                + entry.Metadata.Name);
+                        }
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View("AllUsers", _context.Users.ToList());
         }
 
-        public ActionResult DeleteUser()
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string? id)
         {
-            return View();
+
+            if (id == null)
+            {
+                return View("AllUsers", _context.Users.ToList());
+            }
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                //go to different view
+                return View("AllUsers", _context.Users.ToList());
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return View("AllUsers", _context.Users.ToList());
         }
+
 
         private bool UserExists(string id) => _context.Users.Any(e => e.Id == id);
     }
