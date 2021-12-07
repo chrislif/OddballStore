@@ -23,7 +23,7 @@
         @foreach (var cartItem in Model)
         {
             <div class="divBackground col-lg-3 d-flex flex-column text-center shadow-sm p-4 mb-4" height="700px">
-                <img src="~/images/@Html.DisplayFor(modelItem => cartItem.Item.Thumbnail)" class="img-thumbnail mx-auto" height="75px" width="75px" /><br />
+                <img src="~/images/@Html.DisplayFor(modelItem => cartItem.Item.Thumbnail)" class="img-thumbnail mx-auto" height="75" width="75" /><br />
                 Name:<br />
                 @Html.DisplayFor(modelItem => cartItem.Item.Name)<br /><br />
                 Description:<br />
