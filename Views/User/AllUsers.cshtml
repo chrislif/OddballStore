@@ -1,0 +1,48 @@
+﻿@model List<Microsoft.AspNetCore.Identity.IdentityUser>
+
+@{
+    ViewData["Title"] = "All Users";
+}
+
+<h1>User List</h1>
+
+<div class="table">
+    <table class="table jumbotron">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => user.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => user.Email)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(m => m.Name)
+                            @Html.Hidden("Country", (object)ViewBag.Country)
+                            <input type="submit" value="Submit" />
+                        }
+                        <form asp-Controller="User" method="get">
+                            <input type="hidden" />
+
+
+                            <input class="btn-secondary" type="submit" value="Delete" asp-action="DeleteUser" />
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
