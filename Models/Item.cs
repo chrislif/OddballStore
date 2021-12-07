@@ -23,7 +23,14 @@ namespace OddballStore.Models
             Thumbnail = thumbnail;
         }
 
-
+        public Item(int itemID, string name, string description, int price, string thumbnail)
+        {
+            ItemID = itemID;
+            Name = name;
+            Description = description;
+            Price = price;
+            Thumbnail = thumbnail;
+        }
     }
     
 }
