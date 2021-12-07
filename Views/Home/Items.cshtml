@@ -18,7 +18,7 @@
                 Description:<br />
                 @Html.DisplayFor(modelItem => item.Description)<br /><br />
                 Price:<br />
-                @Html.DisplayFor(modelItem => item.Price)<br /><br />
+                @Html.DisplayFor(modelItem => item.Price) gp<br /><br />
                 <div class="mx-auto align-self-end">
                     <form method="post" asp-area="" asp-controller="Home" asp-action="Items">
                         <input type="hidden" id="ItemId" name="ItemId" value="@item.ItemID">
