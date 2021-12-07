@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OddballStore.Data;
+using OddballStore.Models;
 using System;
 using System.Threading.Tasks;
 
@@ -36,6 +37,7 @@ namespace OddballStore
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddDistributedMemoryCache();
+
 
             services.AddSession(options =>
             {

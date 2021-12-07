@@ -69,11 +69,8 @@ namespace OddballStore.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
-        public ActionResult AllUsers()
-        {
-            return View(_context.Users.ToList());
-        }
+
+        
 
         [AllowAnonymous]
         public async Task<IActionResult> Items()
