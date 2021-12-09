@@ -16,19 +16,15 @@
 
     <div class="jumbotron">
         <h3 class="display-4">Edit User Information</h3>
-        <form asp-controller="HomeController">
+        <form asp-controller="HomeController" asp-action="UpdateProfile" method="post">
             <div class="form-group">
                 <label asp-for="Email">Email: </label>
-                <input type="text" value="@currentUser.Email" class="form-control" />
+                <input type="text" value="@currentUser.Email" class="form-control" disabled/>
             </div>
 
             <div class="form-group">
                 <label asp-for="PhoneNumber">Phone: </label>
-                <input type="text" value="@currentUser.PhoneNumber" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-outline-dark" />
+                <input type="text" value="@currentUser.PhoneNumber" class="form-control" disabled />
             </div>
 
         </form>

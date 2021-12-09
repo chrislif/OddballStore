@@ -54,23 +54,8 @@ namespace OddballStore.Controllers
             return View(cartList);
         }
 
-        //update profile
-        public IActionResult UpdateProfile()
-        {
-            if (ModelState.IsValid)
-            {
-                //TODO: Update DB record
-                return View("Profile");
-            }
-            else
-            {
-                return View("Index");
-
-            }
-        }
 
 
-        
 
         [AllowAnonymous]
         public async Task<IActionResult> Items()
